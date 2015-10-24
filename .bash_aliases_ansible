@@ -1,0 +1,49 @@
+# Aliases for the ansible docker image
+#
+# Explanations for the lines in commands line by line:
+# gather arguments to the variable
+# starting docker run command
+# remove container after command complete
+# allocate a pseudo-tty, keep STDIN open even if not attached
+# mounting current directory as ansible working directory, read only
+# mounting ssh keys of current user to the container, read only
+# ansible image name
+# command which will be running in container (ansible or ansible-playbook)
+# command arguments, gathered from user input
+#
+# To use these:
+#
+#    1) Copy this file to somewhere (e.g. ~/.bash_aliases_ansible).
+#    2) Add the following line to your .bashrc/.zshrc:
+#        source ~/.bash_aliases_ansible
+#
+#   or simply type `. .bash_aliases_ansible` for one time using
+#
+
+
+alias ansible-playbook=__ansible_playbook
+alias ansible=__ansible
+
+__ansible() {
+    local arguments="$@"
+    docker run \
+    --rm \
+    -ti \
+    -v $(pwd):/ansible:ro \
+    -v ~/.ssh:/home/docker/.ssh/:ro \
+    metalguardian/ansible \
+    ansible \
+    ${arguments}
+}
+
+__ansible_playbook() {
+    local arguments="$@"
+    docker run \
+    --rm \
+    -ti \
+    -v $(pwd):/ansible:ro \
+    -v ~/.ssh:/home/docker/.ssh/:ro \
+    metalguardian/ansible \
+    ansible-playbook \
+    ${arguments}
+}
