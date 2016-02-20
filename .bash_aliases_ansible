@@ -5,10 +5,10 @@
 # starting docker run command
 # remove container after command complete
 # allocate a pseudo-tty, keep STDIN open even if not attached
-# mounting current directory as ansible working directory, read only
+# mounting current directory as ansible working directory
 # mounting ssh keys of current user to the container, read only
 # ansible image name
-# command which will be running in container (ansible or ansible-playbook)
+# command which will be running in container (ansible, ansible-playbook, ansible-galaxy, ansible-vault)
 # command arguments, gathered from user input
 #
 # To use these:
@@ -23,13 +23,15 @@
 
 alias ansible-playbook=__ansible_playbook
 alias ansible=__ansible
+alias ansible-galaxy=__ansible_galaxy
+alias ansible-vault=__ansible_vault
 
 __ansible() {
     local arguments="$@"
     docker run \
     --rm \
     -ti \
-    -v $(pwd):/ansible:ro \
+    -v $(pwd):/ansible \
     -v ~/.ssh:/home/docker/.ssh/:ro \
     metalguardian/ansible \
     ansible \
@@ -41,9 +43,33 @@ __ansible_playbook() {
     docker run \
     --rm \
     -ti \
-    -v $(pwd):/ansible:ro \
+    -v $(pwd):/ansible \
     -v ~/.ssh:/home/docker/.ssh/:ro \
     metalguardian/ansible \
     ansible-playbook \
+    ${arguments}
+}
+
+__ansible_galaxy() {
+    local arguments="$@"
+    docker run \
+    --rm \
+    -ti \
+    -v $(pwd):/ansible \
+    -v ~/.ssh:/home/docker/.ssh/:ro \
+    metalguardian/ansible \
+    ansible-galaxy \
+    ${arguments}
+}
+
+__ansible_vault() {
+    local arguments="$@"
+    docker run \
+    --rm \
+    -ti \
+    -v $(pwd):/ansible \
+    -v ~/.ssh:/home/docker/.ssh/:ro \
+    metalguardian/ansible \
+    ansible-vault \
     ${arguments}
 }

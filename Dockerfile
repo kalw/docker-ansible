@@ -1,4 +1,4 @@
-FROM ubuntu:14.04.3
+FROM ubuntu:latest
 MAINTAINER Ivan Pushkin <imetalguardi+docker@gmail.com>
 
 ENV TERM xterm
