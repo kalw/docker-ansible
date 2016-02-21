@@ -25,6 +25,7 @@ alias ansible-playbook=__ansible_playbook
 alias ansible=__ansible
 alias ansible-galaxy=__ansible_galaxy
 alias ansible-vault=__ansible_vault
+alias ansible-doc=__ansible_doc
 
 __ansible() {
     local arguments="$@"
@@ -68,8 +69,17 @@ __ansible_vault() {
     --rm \
     -ti \
     -v $(pwd):/ansible \
-    -v ~/.ssh:/home/docker/.ssh/:ro \
     metalguardian/ansible \
     ansible-vault \
+    ${arguments}
+}
+
+__ansible_doc() {
+    local arguments="$@"
+    docker run \
+    --rm \
+    -ti \
+    metalguardian/ansible \
+    ansible-doc \
     ${arguments}
 }

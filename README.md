@@ -19,6 +19,10 @@ ansible-playbook -i hosts site.yml
 
 ansible-galaxy install -r requirements.yml
 
-ansible-vault create foo.yml
+ansible-vault encrypt foo.yml
+
+ansible-doc
 
 ```
+
+The editor for the `ansible-vault create` command is nano 

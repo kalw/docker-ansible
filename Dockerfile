@@ -9,7 +9,10 @@ RUN echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu $(lsb_release -cs)
          > /etc/apt/sources.list.d/ansible.list
 
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get -yq --no-install-recommends install ansible ssh
+RUN DEBIAN_FRONTEND=noninteractive apt-get -yq --no-install-recommends install \
+    ansible \
+    ssh \
+    nano
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN echo '[local]\nlocalhost\n' > /etc/ansible/hosts
