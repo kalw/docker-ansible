@@ -4,8 +4,8 @@ MAINTAINER Ivan Pushkin <imetalguardi+docker@gmail.com>
 ENV TERM xterm
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv 6125E2A8C77F2818FB7BD15B93C4A3FD7BB9C367
-RUN echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu $(lsb_release -cs) main\n \
-         deb-src http://ppa.launchpad.net/ansible/ansible/ubuntu $(lsb_release -cs) main" \
+RUN echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu $(cat /etc/lsb-release | grep DISTRIB_CODENAME | cut -d= -f2) main\n \
+         deb-src http://ppa.launchpad.net/ansible/ansible/ubuntu $(cat /etc/lsb-release | grep DISTRIB_CODENAME | cut -d= -f2) main" \
          > /etc/apt/sources.list.d/ansible.list
 
 RUN apt-get update
