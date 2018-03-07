@@ -10,8 +10,8 @@ RUN echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu $(cat /etc/lsb-rel
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -yq --no-install-recommends install \
     ansible \
-    openssh-client \
     nano
+RUN DEBIAN_FRONTEND=noninteractive apt-get -yq install openssh-client
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN echo '[local]\nlocalhost\n' > /etc/ansible/hosts
