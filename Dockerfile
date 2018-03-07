@@ -11,7 +11,7 @@ RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -yq --no-install-recommends install \
     ansible \
     nano
-RUN apt install -y build-essential libssl-dev zlib1g-dev \n\
+RUN apt-get install -y build-essential libssl-dev zlib1g-dev \n\
 wget "http://mirrors.evowise.com/pub/OpenBSD/OpenSSH/portable/openssh-7.4p1.tar.gz" \n\
 tar xfz openssh-7.4p1.tar.gz \n\
 cd openssh-7.4p1 \n\
