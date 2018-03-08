@@ -16,7 +16,7 @@ RUN echo "===> Installing sudo to emulate normal OS behavior..."  && \
     \
     \
     echo "===> Installing handy tools (not absolutely required)..."  && \
-    apk --update add sshpass openssh-client rsync  && \
+    apk --update add sshpass openssh-client rsync sudo && \
     \
     \
     echo "===> Removing package list..."  && \
@@ -26,6 +26,12 @@ RUN echo "===> Installing sudo to emulate normal OS behavior..."  && \
     \
     echo "===> Adding hosts for convenience..."  && \
     mkdir -p /etc/ansible                        && \
-    echo 'localhost' > /etc/ansible/hosts
+    echo 'localhost' > /etc/ansible/hosts	 && \
+    mkdir /ansible && \
+    adduser -u 1000 -D docker && \
+    echo "docker   ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+USER docker
+WORKDIR /ansible
 
 CMD ["/bin/true"]
