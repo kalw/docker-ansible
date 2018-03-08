@@ -20,10 +20,11 @@ RUN wget --output-document /tmp/openssh-7.4p1.tar.gz "http://mirrors.evowise.com
  make &&\
  make install
 
-RUN apt-get remove --purge wget unzip build-essentials &&\
-  apt-get --purge autoremove &&\
-  apt-get autoclean &&\
-  apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /tmp/openssh-7.4p1/*
+RUN export DEBIAN_FRONTEND=noninteractive &&\
+  apt-get remove -y --purge build-essential libssl-dev zlib1g-dev wget &&\
+  apt-get --purge autoremove -y &&\
+  apt-get autoclean -y &&\
+  apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /tmp/openssh-7.4p1/*
 
 RUN echo '[local]\nlocalhost\n' > /etc/ansible/hosts
 
