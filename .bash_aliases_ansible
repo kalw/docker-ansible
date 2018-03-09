@@ -34,7 +34,7 @@ __ansible() {
     -ti \
     -v $(pwd):/ansible \
     -v ~/.ssh:/home/docker/.ssh/:ro \
-    metalguardian/ansible \
+    kalw/docker-ansible \
     ansible \
     ${arguments}
 }
@@ -46,7 +46,7 @@ __ansible_playbook() {
     -ti \
     -v $(pwd):/ansible \
     -v ~/.ssh:/home/docker/.ssh/:ro \
-    metalguardian/ansible \
+    kalw/docker-ansible \
     ansible-playbook \
     ${arguments}
 }
@@ -58,7 +58,7 @@ __ansible_galaxy() {
     -ti \
     -v $(pwd):/ansible \
     -v ~/.ssh:/home/docker/.ssh/:ro \
-    metalguardian/ansible \
+    kalw/docker-ansible \
     ansible-galaxy \
     ${arguments}
 }
@@ -69,7 +69,7 @@ __ansible_vault() {
     --rm \
     -ti \
     -v $(pwd):/ansible \
-    metalguardian/ansible \
+    kalw/docker-ansible \
     ansible-vault \
     ${arguments}
 }
@@ -79,7 +79,7 @@ __ansible_doc() {
     docker run \
     --rm \
     -ti \
-    metalguardian/ansible \
+    kalw/docker-ansible \
     ansible-doc \
     ${arguments}
 }
