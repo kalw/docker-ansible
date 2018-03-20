@@ -12,7 +12,7 @@ RUN echo "===> Installing sudo to emulate normal OS behavior..."  && \
     \
     \
     echo "===> Installing Ansible..."  && \
-    pip install ansible==1.9.4         && \
+    pip install ansible         && \
     \
     \
     echo "===> Installing handy tools (not absolutely required)..."  && \
