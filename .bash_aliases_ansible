@@ -21,11 +21,15 @@
 #
 
 
-alias ansible-playbook=__ansible_playbook
-alias ansible=__ansible
-alias ansible-galaxy=__ansible_galaxy
-alias ansible-vault=__ansible_vault
-alias ansible-doc=__ansible_doc
+alias ansible-playbook="__pull_latest_version && __ansible_playbook"
+alias ansible="__pull_latest_version && __ansible"
+alias ansible-galaxy="__pull_latest_version && __ansible_galaxy"
+alias ansible-vault="__pull_latest_version && __ansible_vault"
+alias ansible-doc="__pull_latest_version && __ansible_doc"
+
+__pull_latest_version() {
+    docker pull kalw/docker-ansible:alpine
+}
 
 __ansible() {
     local arguments="$@"
