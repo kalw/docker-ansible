@@ -8,8 +8,7 @@ RUN echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu $(cat /etc/lsb-rel
          > /etc/apt/sources.list.d/ansible.list
 
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get -yq --no-install-recommends install \
-    ansible \
+RUN DEBIAN_FRONTEND=noninteractive apt-get -yq --no-install-recommends install ansible 
 RUN apt-get install -y build-essential libssl-dev zlib1g-dev wget
 RUN wget --output-document /tmp/openssh-7.4p1.tar.gz "http://mirrors.evowise.com/pub/OpenBSD/OpenSSH/portable/openssh-7.4p1.tar.gz" &&\
  cd /tmp/ &&\
@@ -31,7 +30,7 @@ RUN mkdir /ansible
 
 # add user "docker" to use it as default user for working with files
 RUN yes "" | adduser --uid=1000 --disabled-password docker
-RUN echo "docker   ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
+RUN echo "docker ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 USER docker
 
