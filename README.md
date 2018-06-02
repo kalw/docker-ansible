@@ -10,6 +10,17 @@ To use these:
 ```
 source ~/.bash_aliases_ansible
 ```
+Note that it will try to mount directory you're on into the container.
+This will give you acccess to files like this: 
+
+``` 
+$cat ./host.file
+127.0.0.1
+$ansible -m ping -i host.file
+```
+
+If you're on osx w/docker-for-mac remember that you're home (/Users/my_user) only is accessible to docker volume mounts.  
+
 Then you can use commands:
 
 ```
