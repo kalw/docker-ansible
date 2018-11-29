@@ -17,7 +17,7 @@ RUN sed -i -e 's/v[[:digit:]]\.[[:digit:]]/edge/g' /etc/apk/repositories && \
     \
     \
     echo "===> Installing handy tools (not absolutely required)..."  && \
-    apk --update add sshpass openssh-client rsync sudo docker && \
+    apk --update add sshpass openssh-client rsync sudo docker git && \
     \
     \
     echo "===> Removing package list..."  && \
