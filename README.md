@@ -1,4 +1,6 @@
 # docker-ansible
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/kalw/docker-ansible.svg?style=plastic)
+
 
 Ansible docker image with prepared bash aliases
 
