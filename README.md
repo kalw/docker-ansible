@@ -21,7 +21,7 @@ $cat ./host.file
 $ansible -m ping -i host.file
 ```
 
-If you're on osx w/docker-for-mac remember that you're home (/Users/my_user) only is accessible to docker volume mounts.  
+If you're on osx w/docker-for-mac remember that your home (/Users/my_user) is only accessible to docker volume mounts.  
 
 Then you can use commands:
 
